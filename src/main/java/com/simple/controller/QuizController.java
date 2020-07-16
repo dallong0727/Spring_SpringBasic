@@ -18,11 +18,18 @@ public class QuizController {
 		return "quiz/quiz01";
 	}
 	
+//	@RequestMapping("/sendBirth")
+//	public String sendBirth(Quiz01VO Quiz01VO, Model model /* ModelAttribute("vo") Quiz01VO vo*/) {
+//		model.addAttribute("Quiz01VO", Quiz01VO);
+//		return "quiz/quiz01_ok";
+//	}
 	@RequestMapping("/sendBirth")
 	public String sendBirth(Quiz01VO Quiz01VO, Model model /* ModelAttribute("vo") Quiz01VO vo*/) {
 		model.addAttribute("Quiz01VO", Quiz01VO);
 		return "quiz/quiz01_ok";
 	}
+	
+	
 	
 	@RequestMapping("/quiz02")
 	public String quiz02() {

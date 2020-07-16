@@ -24,10 +24,8 @@
 	<!-- 해당 패키지를 읽어서 @Controller, @Repository, @Component, @Service가 붙어 있는 클래스를 bean으로 생성 -->
 	<context:component-scan base-package="com.simple.controller" />
 	<context:component-scan base-package="com.simple.service" />
-	<context:component-scan base-package="com.simple.dao" />
+	<context:component-scan base-package="com.simple.mapper" />
 	
 	<!-- 2nd 서비스객체를 빈으로 생성 -->
 	<!-- <beans:bean id="scoreService" class="com.simple.service.ScoreServiceImpl"/> -->
-	
-	
 </beans:beans>

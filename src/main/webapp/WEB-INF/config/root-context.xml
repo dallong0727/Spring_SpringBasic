@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- 아래 bean은 외부 설정파일을 참조하는 곳에 사용하는 클래스 -->
 	<!-- classpath:/ 는 src/main/resources 파일 아래에 참조할 수 있습니다. -->
@@ -26,4 +28,18 @@
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
+	
+	<!-- mybatis 연결객체 생성 -->
+	<!-- 세터주입으로 dataSource객체를 주입 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<!-- mybatis 외부 살정 파일 -->
+		<property name="configLocation" value="classpath:/mybatis-config/mybatis-config.xml"/>
+		<!-- mybatis 구현체 mapper를 묶어서 관리하기 위한 경로 설정 -->
+		<property name="mapperLocations" value="classpath:/sqlmap/*.xml"/>
+	</bean>
+	
+	<!-- mybatis xml파일을 자동으로 읽어서 bean으로 생성 -->
+	<mybatis-spring:scan base-package="com.simple.test.mapper"/>
+	<mybatis-spring:scan base-package="com.simple.*"/> 
 </beans>
